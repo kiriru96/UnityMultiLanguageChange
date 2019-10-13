@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<language>
+	<string id="language">Bahasa</string>
+	<string id="about">Tentang</string>
+	<string id="setting">Pengaturan</string>
+	<string id="profile">Profil</string>
+	<string id="indonesian">Indonesia</string>
+	<string id="england">Inggris</string>
+	<string id="japan">Jepang</string>
+</language>

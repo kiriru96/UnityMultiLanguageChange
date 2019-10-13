@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<language>
+	<string id="language">Lang</string>
+	<string id="about">About</string>
+	<string id="setting">Setting</string>
+	<string id="profile">Profile</string>
+	<string id="indonesian">Indonesian</string>
+	<string id="england">England</string>
+	<string id="japan">Japan</string>
+</language>
