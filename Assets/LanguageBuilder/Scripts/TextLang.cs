@@ -8,21 +8,39 @@ public class TextLang : MonoBehaviour {
     public string id; // id of string in xml
     private string activeLang;
     LanguageBuilder lb;
-	// Use this for initialization
-	void Start () {
+	// When Object awake
+	void Awake () {
         textUI = GetComponent<Text>(); // Get Text Component from gameObject
         lb = LanguageBuilder.Instance; // Initiate LanguageBuilder
-        textUI.text = lb.getLangString(id); // set text with current language state by id
-        activeLang = lb.getCurrentLang(); // save current language
+        lb.OnLanguageChange += UpdateText; //add event
 	}
-
-    void Update()
+    // when object is active
+    private void OnEnable()
     {
-        var currentLang = lb.getCurrentLang(); // get current language active
-        if (!currentLang.Equals(activeLang) && gameObject.activeInHierarchy)// check if current language not equal activeLang
+        UpdateText();
+        if(lb != null){
+            lb.OnLanguageChange += UpdateText; // add event
+        }
+    }
+    // when object is inactive
+    private void OnDisable()
+    {
+        if(lb != null)
         {
-            activeLang = currentLang; // update activeLang with current Language
-            textUI.text = lb.getLangString(id); // update text with current string language
+            lb.OnLanguageChange -= UpdateText; // remove event
+        }
+    }
+    // Fill text component with string from Dictionary LanguageBuilder by id
+    public void UpdateText(){
+        textUI.text = lb.GetLangString(id);
+    }
+
+    private void OnDestroy()
+    {
+        if(lb != null)
+        {
+            lb.OnLanguageChange -= UpdateText; // remove event
+            lb = null;
         }
     }
 }
